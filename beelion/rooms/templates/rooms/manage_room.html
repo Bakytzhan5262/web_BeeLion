@@ -1,0 +1,60 @@
+{% extends 'main/layout.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Комната: {{ room.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">  <!-- Добавлен отступ снизу -->
+    <h3 class="mb-4">Редактировать комнату</h3>
+
+    <!-- Форма для редактирования -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Название</label>
+            {{ form.name|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.room_number.id_for_label }}">Номер комнаты</label>
+            {{ form.room_number|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.room_area.id_for_label }}">Площадь</label>
+            {{ form.room_area|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="{{ form.room_status.id_for_label }}" name="{{ form.room_status.name }}" {% if form.room_status.value %}checked{% endif %}>
+            <label class="form-check-label" for="{{ form.room_status.id_for_label }}">Свободен</label>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.price.id_for_label }}">Цена</label>
+            {{ form.price|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.number_of_people.id_for_label }}">Количество человек</label>
+            {{ form.number_of_people|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Изображение</label>
+            {{ form.image|add_class:"form-control-file" }}
+        </div>
+
+        <div class="d-flex justify-content-start">  <!-- flexbox для размещения кнопок рядом -->
+            <button type="submit" class="btn btn-warning" style="margin-right: 20px;">Сохранить изменения</button>
+  <!-- увеличен отступ между кнопками -->
+            <form method="POST" action="{% url 'delete_room' room.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

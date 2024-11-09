@@ -1,0 +1,38 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Панель администратора{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Карточка для добавления и редактирования комнат -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Управление комнатами
+                </div>
+                <div class="card-body">
+                    <p>Здесь вы можете добавлять новые комнаты или редактировать существующие.</p>
+                    <a href="{% url 'add_room' %}" class="btn btn-primary">Добавить комнату</a>
+                    <a href="{% url 'select_room_for_edit' %}" class="btn btn-warning">Редактировать комнату</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Карточка для добавления и удаления пользователей -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Управление пользователями
+                </div>
+                <div class="card-body">
+                    <p>Здесь вы можете добавлять новых пользователей или удалять существующих.</p>
+                    <a href="#" class="btn btn-primary">Добавить пользователя</a>
+                    <a href="#" class="btn btn-danger">Удалить пользователя</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

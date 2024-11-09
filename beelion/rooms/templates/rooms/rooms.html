@@ -1,0 +1,86 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Наши комнаты{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Наши комнаты</h2>
+                        <div class="bt-option">
+                            <a href="./home.html">Главная</a>
+                            <span>Комнаты</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Rooms Section Begin -->
+    <section class="rooms-section spad">
+        <div class="container">
+            <div class="row">
+                {% for el in rooms %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="room-item">
+                            {% if el.image %}
+                                <img src="{{ el.image.url }}" alt="{{ el.name }}">
+                            {% else %}
+                                <img src="{% static 'path/to/default/image.jpg' %}" alt="No image available">
+                            {% endif %}
+                            <div class="ri-text">
+                                <h4>{{ el.name }}</h4>
+                                <h3>{{ el.price }}тг<span>/за сутки</span></h3>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Площадь:</td>
+                                            <td>{{ el.room_area }} кв.м</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Кол-во человек:</td>
+                                            <td>{{ el.number_of_people }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Номер:</td>
+                                            <td>{{ el.room_number }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Статус:</td>
+                                            <td>{{ el.room_status }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="{% url 'room-detail' el.id %}" class="primary-btn">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- Pagination Section -->
+                <div class="col-lg-12">
+                    <div class="room-pagination">
+                        {% if rooms.has_previous %}
+                            <a href="?page=1">&laquo; First</a>
+                            <a href="?page={{ rooms.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        <span>Page {{ rooms.number }} of {{ rooms.paginator.num_pages }}</span>
+
+                        {% if rooms.has_next %}
+                            <a href="?page={{ rooms.next_page_number }}">Next</a>
+                            <a href="?page={{ rooms.paginator.num_pages }}">Last &raquo;</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Rooms Section End -->
+{% endblock %}

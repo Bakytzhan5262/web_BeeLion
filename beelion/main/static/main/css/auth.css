@@ -1,0 +1,100 @@
+
+
+.bform {
+ font-family: "Montserrat", sans-serif;
+ color: #8d97ad;
+ font-weight: 300;
+ overflow: hidden;
+ position: relative;
+}
+
+.bform h1,
+.bform h2,
+.bform h3,
+.bform h4,
+.bform h5,
+.bform h6 {
+ color: black;
+}
+
+.bform .subtitle {
+ color: #8d97ad;
+ line-height: 24px;
+}
+
+.bform a {
+ text-decoration: none;
+}
+
+.bform .btn-danger-gradiant {
+ background: black;
+ 
+}
+
+.bform .btn-danger-gradiant:hover {
+ background: silver;
+
+}
+
+.bform .btn-md {
+ padding: 15px 45px;
+ font-size: 16px;
+}
+
+.bform .bg-google{
+ background-color: #3b5a9a;
+}
+
+.bform .bg-twitter {
+ background-color: #56adf2;
+}
+
+.bform .text-danger {
+ color: #ff4d7e !important;
+}
+
+.bform .right-image {
+ background-position: center bottom;
+ background-size: cover;
+ background-repeat: no-repeat;
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ top: 0;
+}
+
+
+.info_reg{
+	
+	margin-top: 20px;
+}
+
+
+@media (max-width: 1023px) {
+ .bform .contact-form {
+ padding-left: 0;
+ padding-right: 0;
+ }
+}
+
+@media (max-width: 767px) {
+ .bform .contact-form {
+ padding-left: 15px;
+ padding-right: 15px;
+ }
+}
+
+@media (max-width: 1023px) {
+ .bform .right-image {
+ position: relative;
+ bottom: -95px;
+ }
+
+ .footer{
+ 	  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+ }
+}

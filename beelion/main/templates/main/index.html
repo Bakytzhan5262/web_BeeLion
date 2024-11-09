@@ -1,0 +1,124 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ room.name }}{% endblock %}
+
+
+
+
+{% block content %}
+<!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero-text">
+                        <h1>Приезжайте как гости, уезжайте как друзья</h1>
+                        <p>Добро пожаловать в наш отель — место, где комфорт, стиль и гостеприимство объединяются, чтобы создать для вас идеальное пребывание.</p>
+                        <a href="#" class="primary-btn">Discover Now</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="{% static 'main/img/hero/hero-1.jpg' %}"></div>
+            <div class="hs-item set-bg" data-setbg="{% static 'main/img/hero/hero-2.jpg' %}"></div>
+            <div class="hs-item set-bg" data-setbg="{% static 'main/img/hero/hero-3.jpg'%}"></div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Us Section Begin -->
+    <section class="aboutus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <div class="section-title">
+                    
+                            <h2>О нас</h2>
+                        </div>
+                        <p class="f-para">Добро пожаловать в Beelion — отель, где каждый гость окружен заботой, комфортом и вниманием к деталям. Наше название символизирует трудолюбие и стремление к совершенству, как у пчелы, создающей идеальный улей. Мы стремимся к тому, чтобы каждая деталь вашего пребывания у нас была продумана до мелочей.</p>
+                    
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-pic">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img src="{% static 'main/img/about/about-1.jpg' %}" alt="">
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{% static 'main/img/about/about-2.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Section End -->
+
+    <!-- Services Section End -->
+    <section class="services-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        
+                        <h2>Наши Услуги</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/sportzal.png' %}" width="100px"></div>
+                        <h4>Спортзал</h4>
+                        <p>Современный фитнес-зал, оборудованный тренажёрами для кардио и силовых тренировок, открытый круглосуточно.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/SPA.png' %}" width="100px"></div>
+                        <h4>SPA</h4>
+                        <p>Зона релакса с сауной, массажными кабинетами и услугами по уходу за телом для полного восстановления и расслабления.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/Pitania.png' %}" width="100px"></div>
+                        <h4>Питания</h4>
+                        <p>Ресторан с разнообразным меню, включающим завтраки, обеды и ужины, а также круглосуточный рум-сервис.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/Cleaner.png' %}" width="100px"></div>
+                        <h4>Уборка</h4>
+                        <p>Ежедневная уборка номеров, поддерживающая чистоту и комфорт</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/parking.png' %}" width="100px"></div>
+                        <h4>Парковка</h4>
+                        <p>Безопасная парковка на территории отеля для гостей, в том числе с услугой парковщика.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <div><img src="{% static 'main/img/drying.png' %}" width="100px"></div>
+                        <h4>Химчистка</h4>
+                        <p>Услуги химчистки и стирки для быстрой и удобной обработки одежды.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+{% endblock %}
+    
+
