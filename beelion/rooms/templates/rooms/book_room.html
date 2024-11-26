@@ -1,0 +1,90 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Бронирование {{ room.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Бронирование комнаты: {{ room.name }}</h2>
+
+    <!-- Отображаем ошибки формы, если они есть -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="POST" id="booking-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <p><strong>Цена за день:</strong> {{ room.price }} рублей</p>
+        <p><strong>Расчетная стоимость:</strong> <span id="calculated-price">0</span> рублей</p>
+
+        <!-- Добавляем поле для номера карты, изначально скрытое -->
+        <div id="card-number-field" style="display:none;">
+            <label for="id_card_number">Номер карты</label>
+            <input type="text" name="card_number" id="id_card_number" maxlength="16" placeholder="Введите номер карты" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Забронировать</button>
+    </form>
+</div>
+
+<script>
+    const startDateInput = document.getElementById("id_start_date");
+    const endDateInput = document.getElementById("id_end_date");
+    const calculatedPriceElement = document.getElementById("calculated-price");
+
+    // Получаем цену за день из контекста Django
+    const pricePerDay = parseFloat("{{ room.price }}");
+
+    // Функция для расчета стоимости
+    function calculatePrice() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        // Проверка правильности дат
+        if (startDate && endDate && endDate > startDate) {
+            const timeDifference = endDate - startDate;
+            const days = timeDifference / (1000 * 3600 * 24); // миллисекунды в дни
+            const totalPrice = days * pricePerDay;
+
+            // Обновляем расчетную стоимость
+            calculatedPriceElement.textContent = totalPrice.toFixed(2);
+        } else {
+            // Если даты неверные, показываем 0
+            calculatedPriceElement.textContent = "0";
+        }
+    }
+
+    // Добавляем обработчики событий для расчета
+    startDateInput.addEventListener("input", calculatePrice);
+    endDateInput.addEventListener("input", calculatePrice);
+
+    // Получаем поле выбора способа оплаты
+    const paymentMethodField = document.getElementById("id_payment_method");
+
+    // Функция для отображения/скрытия поля номера карты
+    function toggleCardNumberField() {
+        const cardNumberField = document.getElementById("card-number-field");
+        if (paymentMethodField.value === "card") {
+            cardNumberField.style.display = "block"; // Показываем поле для номера карты
+        } else {
+            cardNumberField.style.display = "none"; // Скрываем поле для номера карты
+        }
+    }
+
+    // Добавляем обработчик события для изменения способа оплаты
+    paymentMethodField.addEventListener("change", toggleCardNumberField);
+
+    // Инициализируем отображение при загрузке страницы
+    toggleCardNumberField();
+</script>
+
+{% endblock %}

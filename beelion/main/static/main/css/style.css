@@ -2370,4 +2370,10 @@ body {
     color: #fff !important; /* Белый текст при наведении */
 }
 
+.container.my-5.admin-page{
 
+}
+
+.col-md-6.admin-page{
+	padding-bottom: 20px;
+}

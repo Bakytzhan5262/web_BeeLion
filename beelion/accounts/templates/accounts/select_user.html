@@ -1,0 +1,15 @@
+<!-- accounts/select_user.html -->
+{% extends 'main/layout.html' %}
+{% block content %}
+<div class="container">
+    <h3>Выберите пользователя для редактирования</h3>
+    <ul class="list-group">
+        {% for user in users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ user.username }} ({{ user.email }})</span>
+                <a href="{% url 'edit_user' user.id %}" class="btn btn-warning">Редактировать</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

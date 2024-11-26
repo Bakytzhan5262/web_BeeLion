@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<div class="container">
+    <h3>Редактирование пользователя: {{ user.username }}</h3>
+
+    <!-- Отображение сообщений об успехе или ошибке -->
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Форма редактирования данных пользователя -->
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+        </div>
+
+        <!-- Форма для смены пароля -->
+        <div class="form-group">
+            <label for="password">Новый пароль</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Введите новый пароль">
+        </div>
+        <div class="form-group">
+            <label for="password_confirmation">Подтвердите пароль</label>
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Подтвердите новый пароль">
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+    </form>
+
+    <!-- Форма для удаления пользователя -->
+    <form method="POST" action="{% url 'delete_user' user.id %}" style="margin-top: 20px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить пользователя</button>
+    </form>
+</div>
+{% endblock %}

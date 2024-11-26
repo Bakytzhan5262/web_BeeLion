@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'main/css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css">
+
+    <!-- Подключаем Bootstrap CSS -->
+<!-- Подключение CSS Bootstrap без integrity -->
+
+
 </head>
 
 <body>
@@ -45,7 +50,8 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li><a href="{% url 'index' %}">Главная</a></li>
-                                    <li><a href="{% url 'rooms' %}">Комнаты</a></li>
+                                    <li><a href="{% url 'rooms:rooms' %}">Комнаты</a></li>
+
                                     <li><a href="{% url 'contact' %}">Связаться с нами</a></li>
                                     {% if user.is_authenticated and user.is_staff %}
     <li><a href="{% url 'admin_page' %}">Админ-панель</a></li>

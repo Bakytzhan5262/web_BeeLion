@@ -1,3 +1,4 @@
+<! --<main/templates/main/admin_page.html -- !>
 {% extends 'main/layout.html' %}
 {% load static %}
 
@@ -14,22 +15,54 @@
                 </div>
                 <div class="card-body">
                     <p>Здесь вы можете добавлять новые комнаты или редактировать существующие.</p>
-                    <a href="{% url 'add_room' %}" class="btn btn-primary">Добавить комнату</a>
-                    <a href="{% url 'select_room_for_edit' %}" class="btn btn-warning">Редактировать комнату</a>
+                   <a href="{% url 'rooms:add_room' %}" class="btn btn-primary">Добавить комнату</a>
+
+                    <a href="{% url 'rooms:select_room_for_edit' %}" class="btn btn-warning">Редактировать комнату</a>
                 </div>
             </div>
         </div>
 
         <!-- Карточка для добавления и удаления пользователей -->
+     <div class="col-md-6">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            Управление пользователями
+        </div>
+        <div class="card-body">
+            <p>Здесь вы можете добавлять новых пользователей или редактировать существующих.</p>
+            <a href="{% url 'add_user' %}" class="btn btn-primary">Добавить пользователя</a>
+            <a href="{% url 'select_user' %}" class="btn btn-warning">Редактировать пользователя</a> <!-- Ссылка на страницу выбора пользователя -->
+        </div>
+    </div>
+</div>
+
+
+
+
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                    Управление пользователями
+                    Управление услугами
                 </div>
                 <div class="card-body">
-                    <p>Здесь вы можете добавлять новых пользователей или удалять существующих.</p>
-                    <a href="#" class="btn btn-primary">Добавить пользователя</a>
-                    <a href="#" class="btn btn-danger">Удалить пользователя</a>
+                    <p>Здесь вы можете добавлять услуги в комнаты ил убирать</p>
+                    <a href="#" class="btn btn-primary">Добавить услуги</a>
+                    <a href="#" class="btn btn-danger">Редактировать услуги</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Управление услугами
+                </div>
+                <div class="card-body">
+                    <p>Здесь вы можете добавлять услуги в комнаты ил убирать</p>
+                    <a href="#" class="btn btn-primary">Добавить услуги</a>
+                    <a href="#" class="btn btn-danger">Редактировать услуги</a>
                 </div>
             </div>
         </div>

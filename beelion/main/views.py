@@ -1,3 +1,4 @@
+# main/views.py
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from rooms.models import Room
@@ -11,4 +12,5 @@ def contact(request):
 def admin_page(request):
     rooms = Room.objects.all()  # Получаем все комнаты
     return render(request, 'main/admin_page.html', {'rooms': rooms})
+
 
