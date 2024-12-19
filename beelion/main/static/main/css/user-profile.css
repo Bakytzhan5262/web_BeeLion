@@ -1,0 +1,96 @@
+/* Общий контейнер */
+.profile-container {
+
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+.profile-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-container h2 {
+    margin-top: 30px;
+    color: #555;
+}
+
+.profile-container h3 {
+    margin-top: 20px;
+    color: #666;
+}
+.profile-container h4 {
+    margin-top: 20px;
+    color: #666;
+}
+
+/* Таблицы */
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.booking-table th,
+.booking-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.booking-table th {
+    background-color: #3F3F3F;
+    color: white;
+}
+
+.booking-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.booking-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Статусы */
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.status.active {
+    background-color: #4caf50;
+    color: white;
+}
+
+.status.completed {
+    background-color: #888;
+    color: white;
+}
+
+/* Кнопки */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+.glav_text{
+    text-align: center;
+}

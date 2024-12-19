@@ -139,3 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'index'  # URL на главную страницу после входа
 LOGOUT_REDIRECT_URL = 'login'  # URL на страницу входа после выхода
+
+CSRF_TRUSTED_ORIGINS = ['https://yourdomain.com']  # Если работает на внешнем сервере

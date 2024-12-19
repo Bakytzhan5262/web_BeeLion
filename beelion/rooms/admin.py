@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Room, Booking
+from .models import Room, Booking, Service
 
 # Регистрация модели Room
 admin.site.register(Room)
@@ -19,3 +19,5 @@ class BookingAdmin(admin.ModelAdmin):
 
 # Регистрируем модель Booking с админ-классом
 admin.site.register(Booking, BookingAdmin)
+
+admin.site.register(Service)

@@ -14,3 +14,28 @@ def admin_page(request):
     return render(request, 'main/admin_page.html', {'rooms': rooms})
 
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Comment
+from .forms import CommentForm
+
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import MessageForm
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Ваше сообщение отправлено успешно!')
+            return redirect('contact')  # Замените на ваш URL-нейм
+        else:
+            messages.error(request, 'Пожалуйста, исправьте ошибки в форме.')
+    else:
+        form = MessageForm()
+
+    return render(request, 'main/contact.html', {'form': form})
+

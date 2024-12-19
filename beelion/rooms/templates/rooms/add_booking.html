@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Добавление бронирования{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Добавление нового бронирования</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}

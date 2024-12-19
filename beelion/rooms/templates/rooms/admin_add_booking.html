@@ -1,66 +1,32 @@
 {% extends 'main/layout.html' %}
-
-{% block title %}Бронирование {{ room.name }}{% endblock %}
+{% block title %}Добавить бронирование{% endblock %}
 {% load widget_tweaks %}
-
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Бронирование комнаты: {{ room.name }}</h2>
-
-    <!-- Toast для сообщений -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="toast align-items-center text-bg-{{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ message }}
-                        </div>
-                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Закрыть"></button>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
-
-    <!-- Отображение сообщений -->
-    {% if messages %}
-        <div class="mt-3">
-            {% for message in messages %}
-                <div class="alert
-                    {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %}"
-                    role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    <!-- Отображаем ошибки формы, если они есть -->
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-
+    <h2 class="text-center mb-4">Добавить бронирование</h2>
     <div class="card shadow-sm p-4">
         <form method="POST" id="booking-form">
             {% csrf_token %}
-            <input type="hidden" name="payment_method" id="id_payment_method" value="">
+            <input type="hidden" name="payment_method" id="id_payment_method" value="cash">
 
-            <!-- Поле для выбора комнаты -->
             <div class="mb-3">
-                <label for="id_room" class="form-label">Комната</label>
-                {{ form.room|add_class:"form-select" }}
+                <label for="id_user" class="form-label">Выберите пользователя</label>
+                <select name="user" id="id_user" class="form-select">
+                    {% for user in form.user.field.queryset %}
+                        <option value="{{ user.id }}" {% if user.id == form.user.value %}selected{% endif %}>{{ user }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
-            <!-- Поля формы -->
+            <div class="mb-3">
+                <label for="id_room" class="form-label">Комната</label>
+                <select name="room" id="id_room" class="form-select">
+                    {% for room in form.room.field.queryset %}
+                        <option value="{{ room.id }}" {% if room.id == form.room.value %}selected{% endif %}>{{ room }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label for="id_start_date" class="form-label">Дата начала</label>
                 {{ form.start_date|add_class:"form-control" }}
@@ -71,33 +37,26 @@
                 {{ form.end_date|add_class:"form-control" }}
             </div>
 
-            <!-- Поле для ввода номера телефона -->
             <div class="mb-3">
                 <label for="id_phone_number" class="form-label">Номер телефона</label>
-                <input type="tel" name="phone_number" id="id_phone_number" class="form-control" placeholder="Введите номер телефона" required>
+                <input type="tel" name="phone_number" id="id_phone_number" class="form-control" value="{{ form.phone_number.value }}">
             </div>
 
-            <!-- Блок выбора способа оплаты -->
             <div class="mb-3">
                 <label class="form-label">Способ оплаты</label><br>
-
-                <!-- Кнопки для выбора способа оплаты, изменены на черные -->
-                <button type="button" class="btn btn-dark" id="cash-button" onclick="selectPaymentMethod('cash')">Наличными</button>
-                <button type="button" class="btn btn-dark" id="card-button" onclick="selectPaymentMethod('card')">Картой</button>
+                <button type="button" class="btn btn-outline-primary" id="cash-button" onclick="selectPaymentMethod('cash')">Наличными</button>
+                <button type="button" class="btn btn-outline-primary" id="card-button" onclick="selectPaymentMethod('card')">Картой</button>
             </div>
 
-            <!-- Текст для оплаты наличными (по умолчанию скрыт) -->
             <div id="cash-text" style="display:none;">
                 <p>Оплата будет произведена на кассе.</p>
             </div>
 
-            <!-- Поле для номера карты (скрыто по умолчанию) -->
             <div id="card-number-field" class="mb-3" style="display:none;">
                 <label for="id_card_number" class="form-label">Номер карты</label>
                 <input type="text" name="card_number" id="id_card_number" maxlength="16" placeholder="Введите номер карты" class="form-control">
             </div>
 
-            <!-- Услуги -->
             <div class="mb-3">
                 <label class="form-label">Дополнительные услуги:</label>
                 <div id="services-list">
@@ -112,27 +71,14 @@
                 </div>
             </div>
 
-            <p><strong>Цена за день:</strong> {{ room.price }} тенге</p>
+            <p><strong>Цена за день:</strong> <span id="room-price">{{ room.price }}</span> тенге</p>
 
-            <!-- Расчетная стоимость -->
             <p><strong>Расчетная стоимость:</strong> <span id="calculated-price">0</span> тенге</p>
 
-            <!-- Кнопка отправки -->
-            <button type="submit" class="btn btn-dark btn-lg mt-4 w-100">Забронировать</button>
+            <button type="submit" class="btn btn-primary btn-lg mt-4 w-100">Сохранить</button>
         </form>
     </div>
 </div>
-
-<script>
-    // Инициализация всех toast на странице
-    document.addEventListener('DOMContentLoaded', () => {
-        const toastElements = document.querySelectorAll('.toast');
-        toastElements.forEach(toastEl => {
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        });
-    });
-</script>
 
 <script>
     const startDateInput = document.getElementById("id_start_date");

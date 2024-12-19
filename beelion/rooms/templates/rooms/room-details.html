@@ -1,10 +1,7 @@
-
 {% extends 'main/layout.html' %}
 {% load static %}
 
 {% block title %}{{ room.name }}{% endblock %}
-
-
 
 {% block content %}
     <!-- Breadcrumb Section Begin -->
@@ -32,17 +29,17 @@
                 <div class="col-lg-12">
                     <div class="room-details-item">
                         {% if room.image %}
-<div style="text-align: center;">
-    <img src="{{ room.image.url }}" alt="{{ room.name }}" style="width: 100%; height: 50%;">
-</div>
-{% else %}
-<div style="text-align: center;">
-    <img src="{% static 'path/to/default/image.jpg' %}" alt="No image available" style="width: 60%; height: auto;">
-</div>
-{% endif %}
+                            <div style="text-align: center;">
+                                <img src="{{ room.image.url }}" alt="{{ room.name }}" style="width: 100%; height: 50%;">
+                            </div>
+                        {% else %}
+                            <div style="text-align: center;">
+                                <img src="{% static 'path/to/default/image.jpg' %}" alt="No image available" style="width: 60%; height: auto;">
+                            </div>
+                        {% endif %}
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>{{room.name}}</h3>
+                                <h3>{{ room.name }}</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
                                         <i class="icon_star"></i>
@@ -51,20 +48,18 @@
                                         <i class="icon_star"></i>
                                         <i class="icon_star-half_alt"></i>
                                     </div>
-                                    <a href="{% url 'rooms:book_room' room.id %}">Booking Now</a>
-
-
+                                    <a href="{% url 'rooms:book_room' room.id %}">Бронирование сейчас</a>
                                 </div>
                             </div>
-                            <h2>{{room.price}}тг<span>/за сутки</span></h2>
+                            <h2>{{ room.price }}тг<span>/за сутки</span></h2>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Площадь:</td>
-                                        <td>{{room.room_area}}</td>
+                                        <td>{{ room.room_area }} кв.м</td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">CКол-во человек:</td>
+                                        <td class="r-o">Кол-во человек:</td>
                                         <td>{{ room.number_of_people }}</td>
                                     </tr>
                                     <tr>
@@ -77,86 +72,52 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">Комната отличается уютной атмосферой и современным дизайном,
-                                идеально подходящая как для отдыха, так и для деловых поездок. В ней предусмотрены
-                                все необходимые удобства для комфортного проживания, включая удобную кровать,
-                                рабочую зону и просторный шкаф для хранения вещей.</p>
-                            <p>Светлые тона интерьера, мягкое освещение и качественные материалы создают приятную
-                                обстановку, в которой приятно расслабиться после долгого дня. Панорамные окна пропускают
-                                много света и открывают красивый вид на город, делая пребывание в комнате ещё более приятным.
-                            </p>
+                            <p class="f-para">Комната отличается уютной атмосферой и современным дизайном, идеально подходящая как для отдыха, так и для деловых поездок.</p>
+                            <p>Светлые тона интерьера, мягкое освещение и качественные материалы создают приятную обстановку, в которой приятно расслабиться после долгого дня.</p>
                         </div>
                     </div>
-                    <div class="rd-reviews">
-                        <h4>Reviews</h4>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-1.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="img/room/avatar/avatar-2.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-add">
-                        <h4>Add Review</h4>
-                        <form action="#" class="ra-form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name*">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email*">
-                                </div>
-                                <div class="col-lg-12">
-                                    <div>
-                                        <h5>You Rating:</h5>
-                                        <div class="rating">
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star-half_alt"></i>
-                                        </div>
-                                    </div>
-                                    <textarea placeholder="Your Review"></textarea>
-                                    <button type="submit">Submit Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
+                    <!-- Comments Section -->
+                    <div class="rd-reviews">
+                        <h4>Коментарий</h4>
+                        {% for comment in room.comments.all %}
+                            <div class="review-item">
+                                <div class="ri-text">
+                                    <span>{{ comment.created_at|date:"d M Y" }}</span>
+                                    <h5>{{ comment.user.username }}</h5>
+                                    <p>{{ comment.text }}</p>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>Комментарии отсутствуют.</p>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Add Review Section -->
+                    {% if user.is_authenticated %}
+                        <div class="review-add">
+                            <h4>Написать коментарии</h4>
+                            <form action="{% url 'rooms:add_comment' room.id %}" method="post" class="ra-form">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" name="login" value="{{ user.username }}" readonly placeholder="Login">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="email" name="email" value="{{ user.email }}" readonly placeholder="Email">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea name="text" placeholder="Твой комментарий"></textarea>
+                                        <button type="submit">Отправить</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <p>Пожалуста, <a href="{% url 'login' %}">Войдите</a> чтобы оставить коментарий.</p>
+
+                    {% endif %}
+                </div>
             </div>
         </div>
     </section>
